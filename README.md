@@ -8,10 +8,6 @@ The purpose of this project is use different ways of sending different HTTP requ
 
 This web application will utilize Axios, SuperAgent, and fetch to send HTTP requests to GitHub's API to request for user data.
 
-There are 2 phases for this project:
-1) Sending a request to GitHub using the aforementioned techniques.
-2) Canceling the request from the first phase.
-
 ## Technical Overview
 
 To be completed.

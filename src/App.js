@@ -4,7 +4,6 @@ import request from 'superagent';
 import './App.css';
 
 function UserData(props) {
-
   function isObjectEmpty(Obj) { // check if user in state is empty
     for(var key in Obj) {
       if(Obj.hasOwnProperty(key))
@@ -13,15 +12,15 @@ function UserData(props) {
         return true;
   }
 
-  if(isObjectEmpty(props.userData)){ // Default message
-    return (
-      <h3>User info will show here.</h3>
-    )
-  }
-
   if(props.userData.status == 404) { // Check if user is found
     return (
       <h3>User Not Found.</h3>
+    )
+  }
+
+  if(isObjectEmpty(props.userData)){ // Default message
+    return (
+      <h3>User info will show here.</h3>
     )
   }
 
