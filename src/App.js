@@ -3,9 +3,69 @@ import axios from 'axios';
 import request from 'superagent';
 import './App.css';
 
+function UserData(props) {
+
+  function isObjectEmpty(Obj) { // check if user in state is empty
+    for(var key in Obj) {
+      if(Obj.hasOwnProperty(key))
+        return false;
+      }
+        return true;
+  }
+
+  if(isObjectEmpty(props.userData)){ // Default message
+    return (
+      <h3>User info will show here.</h3>
+    )
+  }
+
+  if(props.userData.status == 404) { // Check if user is found
+    return (
+      <h3>User Not Found.</h3>
+    )
+  }
+
+  return ( // return user data
+    <div>
+    <p>Avatar: <img style={{width: '100px', height: '100%'}} src={ props.userData.avatar_url }/></p>
+    <p>Bio: { props.userData.bio }</p>
+    <p>Blog: { props.userData.blog }</p>
+    <p>Company: { props.userData.company }</p>
+    <p>Created At: { props.userData.created_at }</p>
+    <p>Email: { props.userData.email }</p>
+    <p>Events URL: { props.userData.events_url }</p>
+    <p>Followers: { props.userData.followers }</p>
+    <p>Followers URL { props.userData.followers_url }</p>
+    <p>Following: { props.userData.following }</p>
+    <p>Following URL: { props.userData.following_url }</p>
+    <p>Gists URL: { props.userData.gists_url }</p>
+    <p>Gravatar ID: { props.userData.gravatar_id }</p>
+    <p>Hireable: { props.userData.hireable }</p>
+    <p>HTML URL: { props.userData.html_url }</p>
+    <p>User ID: { props.userData.id }</p>
+    <p>Location: { props.userData.location }</p>
+    <p>Login: { props.userData.login }</p>
+    <p>Username: { props.userData.name }</p>
+    <p>Node ID: { props.userData.node_id }</p>
+    <p>Organization URL: { props.userData.organizations_url }</p>
+    <p>Public Gists: { props.userData.public_gists }</p>
+    <p>Public Repos: { props.userData.public_repos }</p>
+    <p>Received Events URL: { props.userData.received_events_url }</p>
+    <p>Repos URL: { props.userData.repos_url }</p>
+    <p>Site Admin: { props.userData.site_admin }</p>
+    <p>Starred URL: { props.userData.starred_url }</p>
+    <p>Subscriptions URL: { props.userData.subscriptions_url }</p>
+    <p>Type: { props.userData.type }</p>
+    <p>Updated At: { props.userData.updated_at }</p>
+    <p>URL: { props.userData.url }</p>
+    </div>
+  )
+}
+
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+
     this.state = {
       githubURL: "https://api.github.com/users/",
       usernameAxios: "",
@@ -52,12 +112,13 @@ class App extends Component {
     if(this.state.usernameAxios) {
       axios
       .get(this.state.githubURL + this.state.usernameAxios)
-      // .then(response => console.log(response.data))
       .then(res =>
         this.setState({user: res.data},
-            // () => console.log(this.state)) // log data after data is set since setState is asynchronous.
-      ))
+            // () => console.log(this.state) // log data after data is set since setState is asynchronous.
+        )
+      )
       .then(this.setState({usernameAxios: ""}))
+      .catch(err => this.setState({ user: err.response }))
     } else {
       this.handleNoInput();
     }
@@ -72,6 +133,7 @@ class App extends Component {
             // () => console.log(this.state)
         ))
         .then(this.setState({usernameSuperAgent: ""}))
+        .catch(err => this.setState({ user: err.response }))
     } else {
       this.handleNoInput();
     }
@@ -80,12 +142,19 @@ class App extends Component {
   getUserFetch() {
     if(this.state.usernameFetch) {
       fetch(this.state.githubURL + this.state.usernameFetch)
-          .then(res => res.json()) // Change data type so we are able to parse the data
+          .then( res =>
+            {
+            if(res.ok) {
+              return res.json(); // data is the response converted to JSON
+            } else {
+              throw res;
+            }
+          }
+        )
           // .then(data => console.log(data))
-          .then(data => this.setState({ user: data }, // data is the response converted to JSON
-               // () => console.log(this.state)
-          ))
+          .then(data => this.setState({ user: data })) // data is the response converted to JSON
           .then(this.setState({usernameFetch: ""}))
+          .catch(err => this.setState({ user: err }))
     } else {
       this.handleNoInput();
     }
@@ -115,37 +184,7 @@ class App extends Component {
           <button onClick={this.resetUser}>Reset</button>
         </div>
         <div className="userData">
-          <p>{ this.state.user.avatar_url }</p>
-          <p>{ this.state.user.bio }</p>
-          <p>{ this.state.user.blog }</p>
-          <p>{ this.state.user.company }</p>
-          <p>{ this.state.user.created_at }</p>
-          <p>{ this.state.user.email }</p>
-          <p>{ this.state.user.events_url }</p>
-          <p>{ this.state.user.followers }</p>
-          <p>{ this.state.user.followers_url }</p>
-          <p>{ this.state.user.following }</p>
-          <p>{ this.state.user.following_url }</p>
-          <p>{ this.state.user.gists_url }</p>
-          <p>{ this.state.user.gravatar_id }</p>
-          <p>{ this.state.user.hireable }</p>
-          <p>{ this.state.user.html_url }</p>
-          <p>{ this.state.user.id }</p>
-          <p>{ this.state.user.location }</p>
-          <p>{ this.state.user.login }</p>
-          <p>{ this.state.user.name }</p>
-          <p>{ this.state.user.node_id }</p>
-          <p>{ this.state.user.organizations_url }</p>
-          <p>{ this.state.user.public_gists }</p>
-          <p>{ this.state.user.public_repos }</p>
-          <p>{ this.state.user.received_events_url }</p>
-          <p>{ this.state.user.repos_url }</p>
-          <p>{ this.state.user.site_admin }</p>
-          <p>{ this.state.user.starred_url }</p>
-          <p>{ this.state.user.subscriptions_url }</p>
-          <p>{ this.state.user.type }</p>
-          <p>{ this.state.user.updated_at }</p>
-          <p>{ this.state.user.url }</p>
+          <UserData userData={this.state.user}/>
         </div>
       </div>
     );
