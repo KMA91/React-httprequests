@@ -95,6 +95,11 @@ class App extends Component {
     this.setState({user: {}})
   }
 
+  function UserData() {
+    const userData = this.state.user;
+    console.log(userData);
+  }
+
   render() {
     return (
       <div className="App">
