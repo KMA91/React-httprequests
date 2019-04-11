@@ -52,11 +52,11 @@ class App extends Component {
     if(this.state.usernameAxios) {
       axios
       .get(this.state.githubURL + this.state.usernameAxios)
-      // .then(response => console.log(response.data))
       .then(res =>
         this.setState({user: res.data},
-            // () => console.log(this.state)) // log data after data is set since setState is asynchronous.
-      ))
+            () => console.log(this.state) // log data after data is set since setState is asynchronous.
+        )
+      )
       .then(this.setState({usernameAxios: ""}))
     } else {
       this.handleNoInput();
@@ -115,37 +115,37 @@ class App extends Component {
           <button onClick={this.resetUser}>Reset</button>
         </div>
         <div className="userData">
-          <p>{ this.state.user.avatar_url }</p>
-          <p>{ this.state.user.bio }</p>
-          <p>{ this.state.user.blog }</p>
-          <p>{ this.state.user.company }</p>
-          <p>{ this.state.user.created_at }</p>
-          <p>{ this.state.user.email }</p>
-          <p>{ this.state.user.events_url }</p>
-          <p>{ this.state.user.followers }</p>
-          <p>{ this.state.user.followers_url }</p>
-          <p>{ this.state.user.following }</p>
-          <p>{ this.state.user.following_url }</p>
-          <p>{ this.state.user.gists_url }</p>
-          <p>{ this.state.user.gravatar_id }</p>
-          <p>{ this.state.user.hireable }</p>
-          <p>{ this.state.user.html_url }</p>
-          <p>{ this.state.user.id }</p>
-          <p>{ this.state.user.location }</p>
-          <p>{ this.state.user.login }</p>
-          <p>{ this.state.user.name }</p>
-          <p>{ this.state.user.node_id }</p>
-          <p>{ this.state.user.organizations_url }</p>
-          <p>{ this.state.user.public_gists }</p>
-          <p>{ this.state.user.public_repos }</p>
-          <p>{ this.state.user.received_events_url }</p>
-          <p>{ this.state.user.repos_url }</p>
-          <p>{ this.state.user.site_admin }</p>
-          <p>{ this.state.user.starred_url }</p>
-          <p>{ this.state.user.subscriptions_url }</p>
-          <p>{ this.state.user.type }</p>
-          <p>{ this.state.user.updated_at }</p>
-          <p>{ this.state.user.url }</p>
+          <p>Avatar: <img style={{width: '100px', height: '100%'}} src={ this.state.user.avatar_url }/></p>
+          <p>Bio: { this.state.user.bio }</p>
+          <p>Blog: { this.state.user.blog }</p>
+          <p>Company: { this.state.user.company }</p>
+          <p>Created At: { this.state.user.created_at }</p>
+          <p>Email: { this.state.user.email }</p>
+          <p>Events URL: { this.state.user.events_url }</p>
+          <p>Followers: { this.state.user.followers }</p>
+          <p>Followers URL { this.state.user.followers_url }</p>
+          <p>Following: { this.state.user.following }</p>
+          <p>Following URL: { this.state.user.following_url }</p>
+          <p>Gists URL: { this.state.user.gists_url }</p>
+          <p>Gravatar ID: { this.state.user.gravatar_id }</p>
+          <p>Hireable: { this.state.user.hireable }</p>
+          <p>HTML URL: { this.state.user.html_url }</p>
+          <p>User ID: { this.state.user.id }</p>
+          <p>Location: { this.state.user.location }</p>
+          <p>Login: { this.state.user.login }</p>
+          <p>Username: { this.state.user.name }</p>
+          <p>Node ID: { this.state.user.node_id }</p>
+          <p>Organization URL: { this.state.user.organizations_url }</p>
+          <p>Public Gists: { this.state.user.public_gists }</p>
+          <p>Public Repos: { this.state.user.public_repos }</p>
+          <p>Received Events URL: { this.state.user.received_events_url }</p>
+          <p>Repos URL: { this.state.user.repos_url }</p>
+          <p>Site Admin: { this.state.user.site_admin }</p>
+          <p>Starred URL: { this.state.user.starred_url }</p>
+          <p>Subscriptions URL: { this.state.user.subscriptions_url }</p>
+          <p>Type: { this.state.user.type }</p>
+          <p>Updated At: { this.state.user.updated_at }</p>
+          <p>URL: { this.state.user.url }</p>
         </div>
       </div>
     );
