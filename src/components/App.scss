@@ -1,0 +1,253 @@
+$font-stack: Roboto, sans-serif;
+$yellow: #f3ba19;
+$secondary: #154c84;
+
+html {
+  font-family: $font-stack;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.textInput {
+  max-width: 150px;
+  height: 35px;
+  padding: 5;
+  background: white;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+}
+
+.btn {
+  cursor: pointer;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 2px;
+  width: 150px;
+  padding: 5px;
+  height: 37px;
+  color: white;
+  font-style:italic;
+}
+
+.caution {
+  background: $yellow;
+  transition: background 1s;
+}
+
+.caution:hover {
+  transition: background 1s;
+  background: #f7cf5e;
+}
+
+.nav {
+  min-height: 38px;
+  margin: 0 auto;
+  background: $secondary;
+
+  input[type=checkbox]{
+      display: none;
+  }
+
+  input[type=checkbox]:checked ~ .nav--links {
+      display: block;
+  }
+
+  .nav--showlinks {
+      text-decoration: none;
+      color: #fff;
+      background: #154c84;
+      text-align: center;
+      padding: 10px 0;
+      display: none;
+  }
+
+  .nav--container {
+    margin: 0 auto;
+    width: 75%;
+  }
+
+  .nav--links {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+
+    li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    li a:hover {
+      color: yellow;
+    }
+
+    li {
+      display:inline-block;
+      margin-right: 15px;
+      padding: 10px 0;
+    }
+  }
+}
+
+.header {
+  background-image: url(https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-position: center;
+  width: 75%;
+  max-height: 300px;
+  margin: 0 auto;
+  text-align: center;
+  .header--text {
+    font-size: 4em;
+    color: #d8cfc1;
+  }
+  .header--img {
+    max-height: 200px;
+  }
+}
+
+.github {
+  background: #2a8ac5;
+  width: 75%;
+  margin: 0 auto;
+  min-height: 700px;
+  .github--form {
+    padding: 20px 10px;
+    margin: 0 auto;
+    text-align: center;
+    button:last-of-type {
+      background: #1f47a6;
+    }
+    input {
+      color: #10365d;
+    }
+    input, button {
+      margin: 0 1px;
+    }
+  }
+  .github--userwindow {
+    background: #1a7cb9;
+    word-wrap: break-word;
+    min-height: 600px;
+    padding: 50px;
+    color: white;
+    p {
+      padding: 0 25px;
+    }
+  }
+}
+
+.footer {
+  background: $secondary;
+  .footer--container {
+    width: 75%;
+    margin: 0 auto;
+    padding: 25px 5px 17px;
+  }
+  .footer--left, .footer--right {
+    display: inline-block;
+    width: 50%;
+    padding-bottom: 20px;
+  }
+  .footer--left {
+    font-size: 2em;
+  }
+  .footer--right {
+    text-align: right;
+    a:first-of-type {
+      margin-right: 5px;
+    }
+    a:hover {
+      color: yellow;
+    }
+  }
+  a, p {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+@media screen and (max-width : 760px){
+
+  .nav {
+    .nav--showlinks {
+        display:block;
+    }
+    .nav--container {
+      width: 100%;
+    }
+    .nav--links {
+      position: static;
+      display: none;
+
+      li, li a {
+        text-align: center;
+        color: white;
+        width: 100%;
+        background: #2a8ac5;
+      }
+      li {
+        padding: 8px 0;
+      }
+    }
+  }
+
+  .header {
+    width: 100%;
+    .header--text, .header--img {
+      display: inline-block;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+  }
+
+  .github {
+    width: 100%;
+    .github--form {
+      button {
+        margin: 4px auto;
+        display: block;
+      }
+    }
+    .github--userwindow {
+      padding: 30px;
+    }
+  }
+
+  .footer {
+    .footer--container {
+      padding-bottom: 25px;
+      margin: 0 auto;
+      text-align: center;
+      a {
+        text-decoration: none;
+        color: white;
+        margin: 0 5px;
+      }
+      .footer--left, .footer--right {
+        width: 100%;
+        padding-bottom: 10px;
+      }
+      .footer--left {
+        font-size: 1.5em;
+      }
+      .footer--right {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 320px){
+  .header {
+    .header--text{
+      font-size: 3.8em;
+    }
+    .header--img {
+      max-height: 200px;
+      display: inline-block;
+    }
+  }
+}
