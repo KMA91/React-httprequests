@@ -81,7 +81,7 @@ html {
     }
 
     li a:hover {
-      color: yellow;
+      color: $yellow;
     }
 
     li {
@@ -101,7 +101,7 @@ html {
   text-align: center;
   .header--text {
     font-size: 4em;
-    color: #d8cfc1;
+    color: white;
   }
   .header--img {
     max-height: 200px;
@@ -160,7 +160,7 @@ html {
       margin-right: 5px;
     }
     a:hover {
-      color: yellow;
+      color: $yellow;
     }
   }
   a, p {
